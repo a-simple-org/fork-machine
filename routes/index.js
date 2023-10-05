@@ -8,9 +8,17 @@ router.get('/', function (req, res, next) {
     res.render('index', {title: 'Repo Archive Machine', account: ACCOUNT_ID});
 });
 
+router.get("/fork", function (req, res) {
+    res.redirect("/") // not support get method
+})
+
 router.post("/fork", function (req, res) {
     let owner = req.query.owner
     let repo = req.query.repo
+    if (owner === ACCOUNT_ID) {
+        res.status(400)
+        res.render("failure")
+    }
     api.fork(owner, repo).then(r => {
             if (r.status === 202) {
                 console.log(`Archive ${owner}/${repo} success`)
