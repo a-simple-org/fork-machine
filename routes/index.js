@@ -8,7 +8,7 @@ router.get('/', function (req, res, next) {
     res.render('index', {title: 'Repo Archive Machine', account: ACCOUNT_ID});
 });
 
-router.get("/fork", function (req, res) {
+router.post("/fork", function (req, res) {
     let owner = req.query.owner
     let repo = req.query.repo
     api.fork(owner, repo).then(r => {
@@ -19,10 +19,8 @@ router.get("/fork", function (req, res) {
         }
     ).catch(r => {
         console.log(`Archive ${owner}/${repo} failed`)
-        res.locals.message = "Fork failed"
-        res.locals.error = r.data
         res.status(400);
-        res.render("error")
+        res.render("failure")
     })
 })
 
