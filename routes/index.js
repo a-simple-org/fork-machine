@@ -15,15 +15,15 @@ router.get("/fork", function (req, res) {
             if (r.status === 202) {
                 console.log(`Archive ${owner}/${repo} success`)
                 res.render("result", {title: 'Success', repo: `https://github.com/${ACCOUNT_ID}/${owner}-${repo}`})
-            } else {
-                console.log(`Archive ${owner}/${repo} failed`)
-                res.locals.message = "Fork failed"
-                res.locals.error = r.data
-                res.status(400);
-                res.render("error")
             }
         }
-    )
+    ).catch(r => {
+        console.log(`Archive ${owner}/${repo} failed`)
+        res.locals.message = "Fork failed"
+        res.locals.error = r.data
+        res.status(400);
+        res.render("error")
+    })
 })
 
 module.exports = router;
