@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="GitHub repository archive machine">
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel="icon" href="/favicon.ico"/>
+</head>
+<body>
+<h1><%= title %></h1>
+<p>Welcome to <%= title %></p>
+<p>Visit the <a href="https://github.com/<%= account %>" target="_blank">fork-machine</a></p>
+<h2>Wanna add your GitHub repository?</h2>
+<form method="get" action="/fork">
+    <label>
+        Owner:
+        <input name="owner" id="input-owner">
+    </label><br>
+    <label>
+        Repository:
+        <input name="repo" id="input-repo">
+    </label><br>
+    <button>Archive now!</button>
+</form>
+</body>
+</html>
