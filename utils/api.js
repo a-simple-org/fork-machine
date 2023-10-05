@@ -7,7 +7,7 @@ const octokit = new Octokit({
 
 exports.invokeCount = 0;
 
-var lastInvoke = ""
+let lastInvoke = ""
 
 exports.fork = async function (owner, repo) {
     console.log(`Forking ${owner}/${repo}`)
